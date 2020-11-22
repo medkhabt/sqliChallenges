@@ -9,15 +9,21 @@ public class ElevatorDown extends Elevator{
 		this.setState(ElevatorState.DOWN);
 	}
 	
-	public ElevatorDown(String elevatorId, String elevatorCurrentLevel) {
+	public ElevatorDown(String elevatorId, int elevatorCurrentLevel) {
 		super(elevatorId,elevatorCurrentLevel);
 		this.setState(ElevatorState.DOWN);
 	}
 
 	@Override
-	Elevator nextState(String nextState) {
-		// TODO Auto-generated method stub
-		return null;
+	Elevator nextState(String nextState) throws Exception {
+		if(nextState == "Rest") {
+			return new ElevatorRest(this.getIdElevator(), this.getLevel()); 
+		}
+		
+		else { 
+//			TODO explicit Exception messages. 
+			throw new Exception("State Invalid"); 
+		}
 	}
 	
 

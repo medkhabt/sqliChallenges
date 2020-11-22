@@ -54,7 +54,12 @@ public class Building {
 		}
 	}
 //	
-//	public void requestElevator(); 
+	public String requestElevator() {
+		return null ; 
+	}
+	public String requestElevator(int level) {
+		return null; 
+	}
 //	
 //	public void stopAt(); 
 }

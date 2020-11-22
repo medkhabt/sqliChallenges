@@ -6,7 +6,7 @@ public class ElevatorRest extends Elevator{
 		super(elevatorIdAndCurrentLevel);
 		this.setState(ElevatorState.REST);
 	}
-	public ElevatorRest(String elevatorId, String elevatorCurrentLevel) {
+	public ElevatorRest(String elevatorId, int elevatorCurrentLevel) {
 		super(elevatorId,elevatorCurrentLevel);
 		this.setState(ElevatorState.REST);
 	}

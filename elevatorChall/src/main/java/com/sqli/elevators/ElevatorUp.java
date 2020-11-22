@@ -9,7 +9,7 @@ public class ElevatorUp extends Elevator{
 		this.setState(ElevatorState.UP);
 	}
 	
-	public ElevatorUp(String elevatorId, String elevatorCurrentLevel) {
+	public ElevatorUp(String elevatorId, int elevatorCurrentLevel) {
 		super(elevatorId,elevatorCurrentLevel);
 		this.setState(ElevatorState.UP);
 	}

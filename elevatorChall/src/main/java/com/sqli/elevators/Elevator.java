@@ -7,18 +7,18 @@ public abstract class Elevator {
 		DOWN
 	} 
 	private String idElevator;
-	private String level; 
+	private int level; 
 	private ElevatorState state; 
 
 	public Elevator(String elevatorIdAndCurrentLevel) { 
 		String[] elevatorInfoSplited = elevatorIdAndCurrentLevel.split(":"); 
 		this.idElevator = elevatorInfoSplited[0]; 
-		this.level = elevatorInfoSplited[1]; 
+		this.level = Integer.getInteger(elevatorInfoSplited[1]); 
 //		the elevator should be resting in the initial state. 
 //		this.state = ElevatorState.REST; 
 	}
 	
-	public Elevator(String elevatorId, String elevatorCurrentLevel) { 
+	public Elevator(String elevatorId, int elevatorCurrentLevel) { 
 		this.idElevator = elevatorId; 
 		this.level = elevatorCurrentLevel; 
 	}
@@ -31,11 +31,11 @@ public abstract class Elevator {
 		this.idElevator = idElevator;
 	}
 
-	public String getLevel() {
+	public int getLevel() {
 		return level;
 	}
 
-	public void setLevel(String level) {
+	public void setLevel(int level) {
 		this.level = level;
 	}
 
