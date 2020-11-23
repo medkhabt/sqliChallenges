@@ -7,8 +7,11 @@ import com.sqli.elevators.elevator.elevator_calculator.IElevatorCalculator;
 import com.sqli.elevators.elevator.elevator_calculator.impl.ElevatorCalculator;
 import com.sqli.elevators.elevator.elevator_state.IElevatorMove;
 import com.sqli.elevators.elevator.elevator_state.IElevatorState;
+import com.sqli.elevators.elevator.elevator_state.IElevatorStop;
+import com.sqli.elevators.elevator.elevator_state.impl.ElevatorStateDown;
 import com.sqli.elevators.elevator.elevator_state.impl.ElevatorStateRest;
 import com.sqli.elevators.elevator.elevator_state.impl.ElevatorStateStopping;
+import com.sqli.elevators.elevator.elevator_state.impl.ElevatorStateUp;
 import com.sqli.elevators.elevator_factory.IElevatorFactory;
 import com.sqli.elevators.elevator_factory.impl.NormalElevatorFactory;
 
@@ -31,6 +34,7 @@ public class Building {
 			Elevator elevator = elevatorFactory.createElevator(this, singleElevatorInfo); 
 			elevators.add(elevator); 
 		}
+		elevatorCalculator.init(elevators);
 	}
 
 
@@ -55,32 +59,36 @@ public class Building {
 
 	public void move(String elevatorId, String state){
 		for(Elevator elevator: elevators) {
-			if(elevator.getIdElevator() == elevatorId && elevator.getState().getClass().getName() == "ElevatorStateRest") {
+			if(elevator.getIdElevator().equals(elevatorId)) {
 				IElevatorMove es = new ElevatorStateRest(elevator); 
 				if(state == "UP") {
-					es.up(); 	
+					elevator.setState(es.up()); 	
 				}
 				else if(state == "DOWN") { 
-					es.down();
+					elevator.setState(es.down());
 				}
 			}
 		}
 	}
 //	
 	public String requestElevator() {
-		elevatorCalculator.init(elevators);
+		
 		return elevatorCalculator.getIdClosestElevatorToRequest(numberOfFloors); 
 	}
 	public String requestElevator(int level) {
 		return elevatorCalculator.getIdClosestElevatorToRequest(level); 
 	}
 //	
-	public void stopAt(String elevatorId, int level) {
+	public void stopAt(String elevatorId, int level){
+		
 		for(Elevator elevator: elevators) { 
-			if(elevator.getIdElevator() == elevatorId 
-					&& (elevator.getState().getClass().getName() == "ElevatorStateUp"
-						||elevator.getState().getClass().getName() == "ElevatorStateDown")) { 
-				IElevatorState es = new ElevatorStateStopping(elevator, level); 
+			if(elevator.getIdElevator().equals(elevatorId)) { 
+				IElevatorStop es = new ElevatorStateDown(elevator); 
+				if(elevator.getState().getClass().getName() == "ElevatorStateUp") 
+					es =  new ElevatorStateUp(elevator); 
+				else if(elevator.getState().getClass().getName() == "ElevatorStateDown")
+					es = new ElevatorStateDown(elevator); 
+				elevator.setState(es.stopAt(level)); 	
 			}
 		}
 	}

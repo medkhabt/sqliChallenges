@@ -8,6 +8,7 @@ public class ElevatorStateStopping implements IElevatorState{
 	private Elevator elevator; 
 	private int stopLevel; 
 	
+	public ElevatorStateStopping() {}
 	public ElevatorStateStopping(Elevator elevator,int stopLevel) {
 		this.elevator = elevator; 
 		this.stopLevel = stopLevel; 

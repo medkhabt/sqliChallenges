@@ -1,12 +1,13 @@
 package com.sqli.elevators.elevator.elevator_state.impl;
 
 import com.sqli.elevators.Elevator;
+import com.sqli.elevators.elevator.elevator_state.IElevatorState;
 import com.sqli.elevators.elevator.elevator_state.IElevatorStop;
 
 public class ElevatorStateUp implements IElevatorStop{
 
 	private Elevator elevator; 
-	
+	public ElevatorStateUp() {}
 	public ElevatorStateUp(Elevator elevator) {
 		this.elevator = elevator; 
 	}
@@ -19,14 +20,13 @@ public class ElevatorStateUp implements IElevatorStop{
 	}
 	
 	@Override
-	public void rest() {
-		this.elevator.setState(new ElevatorStateRest(elevator));	
+	public IElevatorState rest() {
+		return new ElevatorStateRest(elevator);	
 	}
 
 	@Override
-	public void stopAt(int stopLevel) {
-		this.elevator.setState(new ElevatorStateStopping(elevator, stopLevel));
-		
+	public IElevatorState stopAt(int stopLevel) {
+		return new ElevatorStateStopping(elevator, stopLevel);		
 	}
 
 
