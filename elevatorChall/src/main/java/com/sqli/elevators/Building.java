@@ -1,19 +1,35 @@
 package com.sqli.elevators;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.sqli.elevators.Elevator.ElevatorState;
+import com.sqli.elevators.elevator.elevator_calculator.IElevatorCalculator;
+import com.sqli.elevators.elevator.elevator_calculator.impl.ElevatorCalculator;
+import com.sqli.elevators.elevator.elevator_state.IElevatorMove;
+import com.sqli.elevators.elevator.elevator_state.IElevatorState;
+import com.sqli.elevators.elevator.elevator_state.impl.ElevatorStateRest;
+import com.sqli.elevators.elevator.elevator_state.impl.ElevatorStateStopping;
+import com.sqli.elevators.elevator_factory.IElevatorFactory;
+import com.sqli.elevators.elevator_factory.impl.NormalElevatorFactory;
+
+
+
+
 
 public class Building {
 	
 	private int numberOfFloors; 
-	private List<Elevator> elevators; 
+	private List<Elevator> elevators = new ArrayList<>(); 
 	
+	private IElevatorFactory elevatorFactory = NormalElevatorFactory.getInstance(); 
+	private IElevatorCalculator elevatorCalculator = ElevatorCalculator.getInstance(); 
 	public Building(int numberOfFloors, String ...elevatorIdAndCurrentPosition){ 
 		this.numberOfFloors= numberOfFloors; 
 //		creating and initiating elevators with a rest state. 
 		for(String singleElevatorInfo: elevatorIdAndCurrentPosition) {
-			elevators.add(new ElevatorRest(singleElevatorInfo)); 
+//			I need to test this out, if it gonna give me acurate building infos after creating the building
+			Elevator elevator = elevatorFactory.createElevator(this, singleElevatorInfo); 
+			elevators.add(elevator); 
 		}
 	}
 
@@ -37,29 +53,35 @@ public class Building {
 	}
 	
 
-	public void move(String elevatorId, String state) throws Exception{
-		
-		for(Elevator elevator: elevators) { 
-			if(elevator.getIdElevator() == elevatorId) {
-				if(elevator.getState() == ElevatorState.REST) {
-					elevator.nextState(state); 
+	public void move(String elevatorId, String state){
+		for(Elevator elevator: elevators) {
+			if(elevator.getIdElevator() == elevatorId && elevator.getState().getClass().getName() == "ElevatorStateRest") {
+				IElevatorMove es = new ElevatorStateRest(elevator); 
+				if(state == "UP") {
+					es.up(); 	
 				}
-				else if (elevator.getState() != ElevatorState.REST) { 
-					throw new Exception("Already moving!"); 
+				else if(state == "DOWN") { 
+					es.down();
 				}
-				break; 
 			}
-//	TODO		if nothing is found Exception. 
-			
 		}
 	}
 //	
 	public String requestElevator() {
-		return null ; 
+		elevatorCalculator.init(elevators);
+		return elevatorCalculator.getIdClosestElevatorToRequest(numberOfFloors); 
 	}
 	public String requestElevator(int level) {
-		return null; 
+		return elevatorCalculator.getIdClosestElevatorToRequest(level); 
 	}
 //	
-//	public void stopAt(); 
+	public void stopAt(String elevatorId, int level) {
+		for(Elevator elevator: elevators) { 
+			if(elevator.getIdElevator() == elevatorId 
+					&& (elevator.getState().getClass().getName() == "ElevatorStateUp"
+						||elevator.getState().getClass().getName() == "ElevatorStateDown")) { 
+				IElevatorState es = new ElevatorStateStopping(elevator, level); 
+			}
+		}
+	}
 }

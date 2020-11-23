@@ -1,26 +1,32 @@
 package com.sqli.elevators;
 
-public abstract class Elevator {
-	enum ElevatorState {
-		REST,
-		UP,
-		DOWN
-	} 
+import com.sqli.elevators.elevator.elevator_calculator.IElevatorCalculator;
+import com.sqli.elevators.elevator.elevator_state.IElevatorState;
+import com.sqli.elevators.elevator.elevator_state.impl.ElevatorStateRest;
+
+
+public class Elevator {
+	
 	private String idElevator;
 	private int level; 
-	private ElevatorState state; 
+	private IElevatorState state; 
+	private Building building; 
 
-	public Elevator(String elevatorIdAndCurrentLevel) { 
-		String[] elevatorInfoSplited = elevatorIdAndCurrentLevel.split(":"); 
-		this.idElevator = elevatorInfoSplited[0]; 
-		this.level = Integer.getInteger(elevatorInfoSplited[1]); 
+
+//	public Elevator() { 
+//		String[] elevatorInfoSplited = elevatorIdAndCurrentLevel.split(":"); 
+//		this.idElevator = elevatorInfoSplited[0]; 
+//		this.level = Integer.getInteger(elevatorInfoSplited[1]); 
 //		the elevator should be resting in the initial state. 
 //		this.state = ElevatorState.REST; 
-	}
+//	}
 	
-	public Elevator(String elevatorId, int elevatorCurrentLevel) { 
-		this.idElevator = elevatorId; 
-		this.level = elevatorCurrentLevel; 
+	public Elevator(Building building, String idElevator, int level) {
+		this.idElevator = idElevator;
+		this.level = level;
+		this.building = building; 
+		this.state = new ElevatorStateRest(this); 
+//		TODO state = rest. 
 	}
 
 	public String getIdElevator() {
@@ -31,6 +37,14 @@ public abstract class Elevator {
 		this.idElevator = idElevator;
 	}
 
+	public Building getBuilding() {
+		return building;
+	}
+
+	public void setBuilding(Building building) {
+		this.building = building;
+	}
+
 	public int getLevel() {
 		return level;
 	}
@@ -39,7 +53,7 @@ public abstract class Elevator {
 		this.level = level;
 	}
 
-	public ElevatorState getState() {
+	public IElevatorState getState() {
 		return state;
 	}
 	
@@ -47,11 +61,13 @@ public abstract class Elevator {
 //		
 //	}
 
-	public void setState(ElevatorState state) {
+	public void setState(IElevatorState state) {
 		this.state = state;
 	}
 	
-	abstract Elevator nextState(String nextState) throws Exception;
+	public boolean isElevator(String elevatorId) {
+		return this.idElevator == elevatorId; 
+	}
 	
 	
 }
