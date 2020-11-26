@@ -51,19 +51,19 @@ public class TrainTest {
          train.detachHead();
          assertEquals("|OOOO|::|hThT|::|OOOO|", train.print());
      }
-//
-//     @Test
-//     public void cargoTrain() {
-//         Train train = new Train("HCCC");
-//         assertEquals("<HHHH::|____|::|____|::|____|", train.print());
-//         train.fill();
-//         assertEquals("<HHHH::|^^^^|::|____|::|____|", train.print());
-//         train.fill();
-//         assertEquals("<HHHH::|^^^^|::|^^^^|::|____|", train.print());
-//         train.fill();
-//         assertEquals("<HHHH::|^^^^|::|^^^^|::|^^^^|", train.print());
-//         assertFalse(train.fill());
-//     }
+
+     @Test
+     public void cargoTrain() {
+         Train train = new Train("HCCC");
+         assertEquals("<HHHH::|____|::|____|::|____|", train.print());
+         train.fill();
+         assertEquals("<HHHH::|^^^^|::|____|::|____|", train.print());
+         train.fill();
+         assertEquals("<HHHH::|^^^^|::|^^^^|::|____|", train.print());
+         train.fill();
+         assertEquals("<HHHH::|^^^^|::|^^^^|::|^^^^|", train.print());
+         assertFalse(train.fill());
+     }
 //
 //     @Test
 //     public void mixedTrain() {

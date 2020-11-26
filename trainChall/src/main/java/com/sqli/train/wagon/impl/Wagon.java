@@ -15,9 +15,6 @@ public class Wagon implements IWagon{
 		return "";
 	}
 
-	/**
-	 *  I need a solution about this empty method.
-	 * 
-	 */
+
 
 }

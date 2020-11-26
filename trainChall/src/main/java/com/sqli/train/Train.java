@@ -1,6 +1,8 @@
 package com.sqli.train;
 import com.sqli.train.wagon.IWagon;
 import com.sqli.train.wagon.impl.Wagon;
+import com.sqli.train.wagon_calculator.IWagonCalculator;
+import com.sqli.train.wagon_calculator.impl.WagonCalculator;
 import com.sqli.train.wagon_factory.IWagonFactory;
 import com.sqli.train.wagon_factory.impl.WagonFactory;
 /**
@@ -17,7 +19,8 @@ public class Train{
 	
 	//entireTrain = w1 => w1 + w2 => 2....
 	private IWagon entireTrain; //initiate 
-	private IWagonFactory wf = WagonFactory.getInstance(); 
+	private IWagonFactory wf = WagonFactory.getInstance();
+	private IWagonCalculator wc = WagonCalculator.getInstance(); 
 	
 	public Train(String trainStringRepresentation) {
 		/**
@@ -30,7 +33,7 @@ public class Train{
 		}
 	}
 	/**
-	 * CHANGE THIS METHOD
+	 * 
 	 * @return a string illustrating the train. 
 	 */
 	public String print() {
@@ -39,12 +42,19 @@ public class Train{
 	}
 	
 	/**
-	 * CHANGE THIS METHOD
+	 * 
 	 * 
 	 * @return a boolean, so we know if there is any empty cargo that could be filled. 
 	 */
 	public Boolean fill() {
-		return false; 
+		if(this.wc.trainIsFull(this.entireTrain)) {
+			return false; 
+		}
+		else {
+			this.entireTrain = this.wc.fillCargo(this.entireTrain);
+			return true; 
+		}
+		 
 	}
 
 	/**
@@ -58,7 +68,7 @@ public class Train{
 	}
 	
 	/**
-	 * CHANGE THIS METHOD
+	 * 
 	 */	
 	public void detachEnd() {
 		this.entireTrain = wf.createDetachEndWagonDecorater(this.entireTrain);
