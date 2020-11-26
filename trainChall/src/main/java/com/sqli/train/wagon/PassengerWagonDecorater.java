@@ -6,8 +6,8 @@ public class PassengerWagonDecorater extends WagonDecorater{
 		super(wagon); 
 	}
 	@Override
-	public String print(String seperator) {
-		return this.wagon.print("") + seperator + "|OOOO|";
+	public String print() {
+		return this.wagon.print() + this.separator + "|OOOO|";
 	}
 
 }

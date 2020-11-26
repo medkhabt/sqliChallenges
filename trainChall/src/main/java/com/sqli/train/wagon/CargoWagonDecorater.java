@@ -23,8 +23,8 @@ public class CargoWagonDecorater extends WagonDecorater{
 		return null; 
 	}
 	@Override
-	public String print(String seperator) {
-		return this.wagon.print("") + cws.print(seperator); 
+	public String print() {
+		return this.wagon.print() + this.separator + cws.print(); 
 	}
 
 

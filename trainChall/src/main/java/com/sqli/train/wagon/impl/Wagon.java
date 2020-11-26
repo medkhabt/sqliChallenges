@@ -9,11 +9,9 @@ import com.sqli.train.wagon.IWagon;
  */
 public class Wagon implements IWagon{
 	public Wagon() {}
-	public String print() {
-		return ""; 
-	}
+
 	@Override
-	public String print(String seperator) {
+	public String print() {
 		return "";
 	}
 }

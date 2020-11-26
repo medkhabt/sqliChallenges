@@ -3,23 +3,23 @@ package com.sqli.train.wagon;
 public class HeadWagonDecorater extends WagonDecorater{
 	private boolean firstWagon; 
 
-	public HeadWagonDecorater(IWagon wagon, boolean firstWagon) {
-		super(wagon); 
-		this.firstWagon = firstWagon;
+	public HeadWagonDecorater(IWagon wagon) {
+		super(wagon);
+		setFirstWagon(); 
 	}
 
 
-	public void setFirstWagon(boolean firstWagon) {
-		this.firstWagon = firstWagon;
+	public void setFirstWagon() {
+		this.firstWagon = isFirstWagon();
 	}
 
 	@Override
-	public String print(String seperator) {
+	public String print() {
 		if(firstWagon) {
-			return this.wagon.print("") + seperator + "<HHHH"; 
+			return this.wagon.print() + this.separator + "<HHHH"; 
 		}
 		else {
-			return this.wagon.print("") + "HHHH>";
+			return this.wagon.print() + "HHHH>";
 		}
 	}
 

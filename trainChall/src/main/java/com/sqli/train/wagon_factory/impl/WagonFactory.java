@@ -5,6 +5,7 @@ import com.sqli.train.wagon.HeadWagonDecorater;
 import com.sqli.train.wagon.IWagon;
 import com.sqli.train.wagon.PassengerWagonDecorater;
 import com.sqli.train.wagon.RestaurentWagonDecorater;
+import com.sqli.train.wagon.impl.Wagon;
 import com.sqli.train.wagon_factory.IWagonFactory;
 
 public class WagonFactory implements IWagonFactory{
@@ -26,7 +27,7 @@ public class WagonFactory implements IWagonFactory{
 		 */
 		switch(wagonCharRepresentation) {
 		case 'H':
-			return new HeadWagonDecorater(wagon, false); 
+			return new HeadWagonDecorater(wagon); 
 		case 'P':
 			return new PassengerWagonDecorater(wagon); 
 		case 'R':
@@ -38,6 +39,11 @@ public class WagonFactory implements IWagonFactory{
 		 * throw an Exception
 		 */
 		return null;
+	}
+
+	@Override
+	public IWagon initiateWagon() {
+		return new Wagon(); 
 	}
 
 }

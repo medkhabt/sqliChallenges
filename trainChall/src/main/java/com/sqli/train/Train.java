@@ -16,10 +16,14 @@ public class Train{
 	
 	
 	//entireTrain = w1 => w1 + w2 => 2....
-	private IWagon entireTrain = new Wagon() ; //initiate 
+	private IWagon entireTrain; //initiate 
 	private IWagonFactory wf = WagonFactory.getInstance(); 
 	
 	public Train(String trainStringRepresentation) {
+		/**
+		 * base class initiation 
+		 */
+		entireTrain = wf.initiateWagon(); 
 		for(char wagonCharRepr : trainStringRepresentation.toCharArray()) {
 			this.entireTrain = wf.createWagon(this.entireTrain, wagonCharRepr); 
 //			entireTrain.print("");
@@ -30,8 +34,8 @@ public class Train{
 	 * @return a string illustrating the train. 
 	 */
 	public String print() {
-		System.out.print(entireTrain.print(""));
-		return entireTrain.print("");
+		System.out.print(entireTrain.print());
+		return entireTrain.print();
 	}
 	
 	/**

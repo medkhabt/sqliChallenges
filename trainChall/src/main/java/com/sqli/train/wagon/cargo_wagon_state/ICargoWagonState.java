@@ -7,5 +7,5 @@ package com.sqli.train.wagon.cargo_wagon_state;
  *
  */
 public interface ICargoWagonState {
-	public String print(String seperator); 
+	public String print(); 
 }
