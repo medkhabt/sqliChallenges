@@ -31,26 +31,26 @@ public class TrainTest {
          assertEquals("<HHHH::|OOOO|::|OOOO|", train.print());
     }
 
-//     @Test
-//     public void restaurantTrain() {
-//         Train train = new Train("HPRP");
-//         assertEquals("<HHHH::|OOOO|::|hThT|::|OOOO|", train.print());
-//     }
-//
-//     @Test
-//     public void doubleHeadedTrain() {
-//         Train train = new Train("HPRPH");
-//         assertEquals("<HHHH::|OOOO|::|hThT|::|OOOO|::HHHH>", train.print());
-//     }
-//
-//     @Test
-//     public void modifyTrain() {
-//         Train train = new Train("HPRPH");
-//         train.detachEnd();
-//         assertEquals("<HHHH::|OOOO|::|hThT|::|OOOO|", train.print());
-//         train.detachHead();
-//         assertEquals("|OOOO|::|hThT|::|OOOO|", train.print());
-//     }
+     @Test
+     public void restaurantTrain() {
+         Train train = new Train("HPRP");
+         assertEquals("<HHHH::|OOOO|::|hThT|::|OOOO|", train.print());
+     }
+
+     @Test
+     public void doubleHeadedTrain() {
+         Train train = new Train("HPRPH");
+         assertEquals("<HHHH::|OOOO|::|hThT|::|OOOO|::HHHH>", train.print());
+     }
+
+     @Test
+     public void modifyTrain() {
+         Train train = new Train("HPRPH");
+         train.detachEnd();
+         assertEquals("<HHHH::|OOOO|::|hThT|::|OOOO|", train.print());
+         train.detachHead();
+         assertEquals("|OOOO|::|hThT|::|OOOO|", train.print());
+     }
 //
 //     @Test
 //     public void cargoTrain() {

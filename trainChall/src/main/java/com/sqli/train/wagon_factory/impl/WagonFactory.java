@@ -1,6 +1,8 @@
 package com.sqli.train.wagon_factory.impl;
 
 import com.sqli.train.wagon.CargoWagonDecorater;
+import com.sqli.train.wagon.DetachEndWagonDecorater;
+import com.sqli.train.wagon.DetachHeadWagonDecorator;
 import com.sqli.train.wagon.HeadWagonDecorater;
 import com.sqli.train.wagon.IWagon;
 import com.sqli.train.wagon.PassengerWagonDecorater;
@@ -33,14 +35,22 @@ public class WagonFactory implements IWagonFactory{
 		case 'R':
 			return new RestaurentWagonDecorater(wagon); 
 		case 'C':
-			return new CargoWagonDecorater(wagon); 
+			return new CargoWagonDecorater(wagon);
+			
 		}
 		/**
 		 * throw an Exception
 		 */
 		return null;
 	}
-
+	
+	public IWagon createDetachHeadWagonDecorater(IWagon wagon) {
+		return new DetachHeadWagonDecorator(wagon); 
+	}
+	
+	public IWagon createDetachEndWagonDecorater(IWagon wagon) { 
+		return new DetachEndWagonDecorater(wagon); 
+	}
 	@Override
 	public IWagon initiateWagon() {
 		return new Wagon(); 

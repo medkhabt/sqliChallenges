@@ -4,8 +4,9 @@ import com.sqli.train.wagon.cargo_wagon_state.ICargoWagonState;
 import com.sqli.train.wagon.cargo_wagon_state.impl.CargoWagonStateEmpty;
 
 public class CargoWagonDecorater extends WagonDecorater{
-	String separator ; 
-	ICargoWagonState cws ; 
+	
+	protected String separator ; 
+	protected ICargoWagonState cws ; 
 	public CargoWagonDecorater(IWagon wagon) {
 		super(wagon); 
 		this.cws = new CargoWagonStateEmpty();

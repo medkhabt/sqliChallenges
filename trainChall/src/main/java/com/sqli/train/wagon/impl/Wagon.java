@@ -14,4 +14,10 @@ public class Wagon implements IWagon{
 	public String print() {
 		return "";
 	}
+
+	/**
+	 *  I need a solution about this empty method.
+	 * 
+	 */
+
 }

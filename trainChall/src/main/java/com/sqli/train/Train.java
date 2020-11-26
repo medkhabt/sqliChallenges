@@ -34,12 +34,13 @@ public class Train{
 	 * @return a string illustrating the train. 
 	 */
 	public String print() {
-		System.out.print(entireTrain.print());
+		System.out.println(entireTrain.print());
 		return entireTrain.print();
 	}
 	
 	/**
 	 * CHANGE THIS METHOD
+	 * 
 	 * @return a boolean, so we know if there is any empty cargo that could be filled. 
 	 */
 	public Boolean fill() {
@@ -48,15 +49,19 @@ public class Train{
 
 	/**
 	 * CHANGE THIS METHOD
+	 * well, with decorators, i kinda cheated here, as i'm working just with the string representation of 
+	 * wagon object, and not actually with the object. 
+	 * if there wasn't about string representation i would be screwed. 
 	 */
 	public void detachHead() {
-		
+		this.entireTrain= wf.createDetachHeadWagonDecorater(this.entireTrain);   
 	}
 	
 	/**
 	 * CHANGE THIS METHOD
 	 */	
 	public void detachEnd() {
+		this.entireTrain = wf.createDetachEndWagonDecorater(this.entireTrain);
 		
 	}
 }

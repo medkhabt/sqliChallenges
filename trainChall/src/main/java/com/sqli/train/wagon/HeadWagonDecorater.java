@@ -19,7 +19,7 @@ public class HeadWagonDecorater extends WagonDecorater{
 			return this.wagon.print() + this.separator + "<HHHH"; 
 		}
 		else {
-			return this.wagon.print() + "HHHH>";
+			return this.wagon.print() + this.separator + "HHHH>";
 		}
 	}
 
