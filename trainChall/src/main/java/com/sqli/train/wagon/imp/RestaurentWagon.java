@@ -23,4 +23,16 @@ public class RestaurentWagon implements IWagon{
 		return wagonRepresentation;
 	}
 
+
+	@Override
+	public Boolean isFull() {
+		return true;
+	}
+
+
+	@Override
+	public void fill() {
+		System.out.println("full for now");
+	}
+
 }

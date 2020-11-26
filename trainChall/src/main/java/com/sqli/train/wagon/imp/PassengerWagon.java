@@ -19,5 +19,15 @@ public class PassengerWagon implements IWagon{
 	public String print() {
 		return wagonRepresentation;
 	}
+
+	@Override
+	public Boolean isFull() {
+		return true;
+	}
+
+	@Override
+	public void fill() {
+		System.out.println("full for now");	
+	}
 	
 }

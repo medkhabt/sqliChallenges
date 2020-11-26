@@ -12,4 +12,9 @@ public class CargoStateLoaded implements ICargoWagonState{
 		return wagonRepresentation;
 	}
 
+	@Override
+	public Boolean isCargoFull() {
+		return true;
+	}
+
 }

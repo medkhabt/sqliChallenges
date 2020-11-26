@@ -13,6 +13,11 @@ public class CargoStateEmpty implements ICargoWagonState{
 	public String print() {
 		return wagonRepresentation;
 	}
+
+	@Override
+	public Boolean isCargoFull() {
+		return false;
+	}
 	
 	
 	

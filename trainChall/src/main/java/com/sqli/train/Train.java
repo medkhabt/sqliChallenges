@@ -39,7 +39,7 @@ public class Train {
 			}
 			trainRepr+= wagon.print(); 
 		}
-		System.out.println("trainRepr:  " + trainRepr);
+//		System.out.println("trainRepr:  " + trainRepr);
 		return trainRepr; 
 		
 	}
@@ -50,6 +50,11 @@ public class Train {
 	
 	public void detachEnd() {
 		 this.wagons = wc.detachEnd(this); 
+	}
+
+	public boolean fill() {
+		return wc.fill(this); 
+		
 	}
 
 	

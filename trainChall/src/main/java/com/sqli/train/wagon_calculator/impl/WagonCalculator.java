@@ -30,4 +30,17 @@ public class WagonCalculator implements IWagonCalculator{
 		return train.getWagons();
 	}
 
+	@Override
+	public boolean fill(Train train) {
+		for(IWagon wagon : train.getWagons()) {
+			if(!wagon.isFull()) {
+				wagon.fill(); 
+				return true; 
+			}
+		}
+		return false;
+	}
+
+	
+
 }

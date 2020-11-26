@@ -41,4 +41,16 @@ public class HeadWagon implements IWagon{
 		}
 	}
 
+
+	@Override
+	public Boolean isFull() {
+		return true;
+	}
+
+
+	@Override
+	public void fill() {
+		System.out.println("full for now");
+	}
+
 }
