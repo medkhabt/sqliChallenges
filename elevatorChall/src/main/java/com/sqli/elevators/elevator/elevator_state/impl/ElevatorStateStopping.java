@@ -24,3 +24,9 @@ public class ElevatorStateStopping implements IElevatorState{
 	}
 
 }
+
+// elevator floor 4 
+
+//request floor 5  
+
+// elevator stop floor 7

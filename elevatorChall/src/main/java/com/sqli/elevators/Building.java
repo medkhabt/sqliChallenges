@@ -28,8 +28,11 @@ public class Building {
 	private IElevatorCalculator elevatorCalculator = ElevatorCalculator.getInstance(); 
 	public Building(int numberOfFloors, String ...elevatorIdAndCurrentPosition){ 
 		this.numberOfFloors= numberOfFloors; 
+		
 //		creating and initiating elevators with a rest state. 
+		
 		for(String singleElevatorInfo: elevatorIdAndCurrentPosition) {
+			
 //			I need to test this out, if it gonna give me acurate building infos after creating the building
 			Elevator elevator = elevatorFactory.createElevator(this, singleElevatorInfo); 
 			elevators.add(elevator); 

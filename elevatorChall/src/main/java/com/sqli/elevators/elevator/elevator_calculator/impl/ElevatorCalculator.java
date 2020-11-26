@@ -51,10 +51,12 @@ public class ElevatorCalculator implements IElevatorCalculator{
 		 * to the sorted function) 
 		 */
 		return this.elevators.stream()
-		.sorted(distanceElevatorComparator)
+		.sorted(distanceElevatorComparator) // [ el3. getIdElevator()] 
 		.filter(elevator -> elevator.getState().distanceBtwRequestAndElevator(requestLevel)>=0)
-		.map(elevator -> elevator.getIdElevator())
-		.reduce((first, second) -> first).orElse(null); 
+		.map(elevator -> elevator.getIdElevator()) // list les ids msortia 3la 7sab distance btw rq, el.
+		
+//		 [ elevator1, elevator2 ] = > [ "id1", "id2" ]
+		.reduce((first, second) -> first).orElse(null);  // element wa7d "
 		
 		
 //		.map(elevator -> elevator
