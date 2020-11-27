@@ -18,7 +18,7 @@ public class Viking extends Warrior{
 	}
 
 	@Override
-	public void uniqueEffect() {
+	public void uniqueEffect(int round) {
 		// None for now. 
 		
 	}

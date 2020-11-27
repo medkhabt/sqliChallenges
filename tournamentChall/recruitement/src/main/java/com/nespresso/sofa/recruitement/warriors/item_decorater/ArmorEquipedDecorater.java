@@ -17,7 +17,7 @@ public class ArmorEquipedDecorater extends ItemEquipedDecorater{
 	}
 
 	@Override
-	public void uniqueEffect() {
+	public void uniqueEffect(int round) {
 		/**
 		 * has none , he can have some in the future , if we don't intend to do so , we can create 2 interferces,
 		 * one for the uniqueEffect ones, and the other for the non-uniqueEffect ones. 

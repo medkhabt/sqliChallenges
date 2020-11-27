@@ -20,8 +20,11 @@ public class BucklerEquipedDecorater extends ItemEquipedDecorater{
 	}
 
 	@Override
-	public void uniqueEffect() {
-		warrior.uniqueEffect(); 
+	public void uniqueEffect(int round) {
+		warrior.uniqueEffect(round); 
+		if(round%2 == 0) {
+			this.damageTaken = 0; 
+		}
 		
 	}
 
@@ -29,5 +32,7 @@ public class BucklerEquipedDecorater extends ItemEquipedDecorater{
 	public Warrior equip(String item) {
 		return ief.createEquipedItem(this, item);
 	}
+
+
 
 }

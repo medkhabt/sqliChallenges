@@ -12,5 +12,5 @@ public abstract class ItemEquipedDecorater extends Warrior{
 		this.weapon = warrior.getWeapon(); 
 	}
 	public abstract void statsChange(); 
-	public abstract void uniqueEffect(); 
+	public abstract void uniqueEffect(int round); 
 }

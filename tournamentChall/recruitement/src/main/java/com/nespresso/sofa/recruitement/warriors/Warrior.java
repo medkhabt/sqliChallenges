@@ -7,7 +7,8 @@ import com.nespresso.sofa.recruitement.weapons.IWeapon;
 public abstract class Warrior {
 	protected int hitPoints; // hmm.. , in test it shows an integer. 
 	protected int damage;
-	protected int resistance; 
+	protected int resistance;
+	protected int damageTaken; 
 	protected IWeapon weapon;
 	protected IItemEquipedFactory ief = ItemEquipedConcreteFactory.getInstance(); 
 	
@@ -18,10 +19,18 @@ public abstract class Warrior {
 	 * Getters and Setters
 	 * 
 	 */
+	
+	
 	public int getResistance() {
 		return resistance; 
 	}
 	
+	public int getDamageTaken() {
+		return damageTaken;
+	}
+	public void setDamageTaken(int damageTaken) {
+		this.damageTaken = damageTaken;
+	}
 	public void setResistance(int resistance) {
 		this.resistance = resistance; 
 	}
@@ -71,13 +80,13 @@ public abstract class Warrior {
 	 * @param warrior
 	 */
 	
-	public abstract void uniqueEffect(); 
-	public void engage(Warrior warrior) {
+	public abstract void uniqueEffect(int round); 
+	public void engage(Warrior warrior, int round) {
 		do {
-			this.attack(warrior); 
+			this.attack(warrior, round); 
 			if(warrior.isWarriorDead())
 				break; 
-			warrior.attack(this);		
+			warrior.attack(this, round);		
 		}while(!this.isWarriorDead()); 
 	
 	}
@@ -86,7 +95,9 @@ public abstract class Warrior {
 	 * if the hitPoints are less than 0 than we set them to 0. 
 	 * @param warrior
 	 */
-	public boolean attack(Warrior warrior) { 
+	
+	public boolean attack(Warrior warrior, int round) {
+		this.uniqueEffect(round);
 		int hitPointsLeft = warrior.hitPoints() - (int)this.damage; 
 		warrior.setHitPoints( (hitPointsLeft > 0) ? hitPointsLeft : 0 );
 		return warrior.isWarriorDead(); 
