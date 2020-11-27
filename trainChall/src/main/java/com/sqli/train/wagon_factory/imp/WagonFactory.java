@@ -19,11 +19,12 @@ public class WagonFactory implements IWagonFactory{
 		}
 		return _instance ; 
 	}
+	
 	@Override
 	public IWagon createWagon(Train train, char wagonCharRepr) {
 		switch(wagonCharRepr) {
 		case 'H':
-			return new HeadWagon(train.getWagons().isEmpty()); 
+			return createHeadWagon(train); 
 		case 'P':
 			return new PassengerWagon(); 
 		case 'R':
@@ -32,6 +33,27 @@ public class WagonFactory implements IWagonFactory{
 			return new CargoWagon();	
 		}
 		return null; 
+	}
+
+	@Override
+	public IWagon createHeadWagon(Train train) {
+		
+		return new HeadWagon(train.getWagons().isEmpty());
+	}
+
+	@Override
+	public IWagon createPassengerWagon(Train train) {
+		return new PassengerWagon();
+	}
+
+	@Override
+	public IWagon createRestaurantWagon(Train train) {
+		return new RestaurentWagon();
+	}
+
+	@Override
+	public IWagon createCargoWagon(Train train) {
+		return new CargoWagon();
 	}
 
 }
