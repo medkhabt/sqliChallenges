@@ -10,6 +10,10 @@ public interface IWagonFactory {
 	 * which isn't right, we should probably get that logic back to the train 
 	 * and create an abstract class Train, with different subclasses, that can take different type range of wagons. 
 	 * 
+	 * 
+	 * the question here is , what if we have new type of wagons, how do we implement this, knowing that we can't change 
+	 * this interface after deploying it. 
+	 * 
 	 * @param WagonCharRep : char representation of wagon's type. 
 	 * @return an IWagon 
 	 */
