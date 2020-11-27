@@ -7,6 +7,11 @@ import com.sqli.nespresso.dishes.Dishes;
 import com.sqli.nespresso.dishes.Satellite;
 import com.sqli.nespresso.dishes.dish_calculator.IDishCalculator;
 
+/**
+ * this calculator needs some help, too much functionalities, maybe subclasses?
+ * @author medkhalil
+ *
+ */
 public class DishCalculator implements IDishCalculator{
 	private static DishCalculator _instance = null ; 
 	
@@ -65,6 +70,19 @@ public class DishCalculator implements IDishCalculator{
 			.filter(dish -> dish.getDirection() == satellite.getSatelliteDirection())
 			.sorted(nearestDishToSatelliteComparator)
 			.reduce((first, second) -> first).orElse(null);
+	}
+
+	@Override
+	public void move(Dish dish, String dishDegreeAndDirection) {
+		int dishDegreeAndDirectionLength = dishDegreeAndDirection.length(); 
+		char dishDirection = dishDegreeAndDirection.charAt(dishDegreeAndDirectionLength - 1);
+		float dishDegree = Float.parseFloat(dishDegreeAndDirection.substring(0, dishDegreeAndDirectionLength - 1)); 
+		if(dishDirection == 'W') {
+			dish.setDegree(dish.getDegree() - dishDegree);
+		}
+		else if(dishDirection == 'E') {
+			dish.setDegree(dish.getDegree() + dishDegree);
+		}
 	}
 
 }

@@ -23,35 +23,35 @@ import org.junit.Test;
  */
 public class DishesTest {
 
-    @Test
-    public void RTMShouldBeWellDisplayed() {
-        // FORMAT : "id,getDegree"
-        Dishes dishes = new Dishes("1,7W");
-        // FORMAT : "name, SATELLITE"
-        assertEquals("|**********|", dishes.signal("RTM, N"));
-    }
-
-    @Test
-    public void ZDFShouldBeDisplayedBadlyAndEuronewsShouldNotBeDisplayed() {
-        Dishes dishes = new Dishes("1,7W", "2,19E");
-        assertEquals("No signal !", dishes.signal("Euronews, H"));
-        assertEquals("|********..|", dishes.signal("ZDF, A"));
-    }
-
-    @Test
-    public void shouldFindTheBestQuality() throws Exception {
-        Dishes dishes = new Dishes("1,19E", "2,19.3E");
-        assertEquals("|*********.|", dishes.signal("ZDF, A"));
-    }
-
 //    @Test
-//    public void EuronewsShouldBeDisplayedIfDishIsMoved() {
-//        Dishes dishes = new Dishes("1,7W", "2,19E");
-//        dishes.move("2", "6.7W");
-//        assertEquals("|***.......|", dishes.signal("Euronews, H"));
-//        dishes.move("2", "0.6E");
-//        assertEquals("|*********.|", dishes.signal("Euronews, H"));
+//    public void RTMShouldBeWellDisplayed() {
+//        // FORMAT : "id,getDegree"
+//        Dishes dishes = new Dishes("1,7W");
+//        // FORMAT : "name, SATELLITE"
+//        assertEquals("|**********|", dishes.signal("RTM, N"));
 //    }
+//
+//    @Test
+//    public void ZDFShouldBeDisplayedBadlyAndEuronewsShouldNotBeDisplayed() {
+//        Dishes dishes = new Dishes("1,7W", "2,19E");
+//        assertEquals("No signal !", dishes.signal("Euronews, H"));
+//        assertEquals("|********..|", dishes.signal("ZDF, A"));
+//    }
+//
+//    @Test
+//    public void shouldFindTheBestQuality() throws Exception {
+//        Dishes dishes = new Dishes("1,19E", "2,19.3E");
+//        assertEquals("|*********.|", dishes.signal("ZDF, A"));
+//    }
+
+    @Test
+    public void EuronewsShouldBeDisplayedIfDishIsMoved() {
+        Dishes dishes = new Dishes("1,7W", "2,19E");
+        dishes.move("2", "6.7W");
+        assertEquals("|***.......|", dishes.signal("Euronews, H"));
+        dishes.move("2", "0.6E");
+        assertEquals("|*********.|", dishes.signal("Euronews, H"));
+    }
 //
 //    @Test
 //    public void RTMShouldBeDisplayedIfDishIsMoved() {

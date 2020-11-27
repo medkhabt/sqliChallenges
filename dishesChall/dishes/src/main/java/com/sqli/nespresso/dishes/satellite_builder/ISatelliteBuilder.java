@@ -5,7 +5,7 @@ import java.util.List;
 import com.sqli.nespresso.dishes.Satellite;
 
 /**
- * Such a stretch with all this builder shenanigans. 
+ * Such a stretch with all this builder's shenanigans. 
  * @author medkhalil
  *
  */

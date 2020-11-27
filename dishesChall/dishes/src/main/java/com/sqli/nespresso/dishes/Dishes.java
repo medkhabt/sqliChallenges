@@ -46,9 +46,12 @@ public class Dishes {
 		
 	}
 
-	public void move(String string, String string2) {
-		// TODO Auto-generated method stub
-		
+	public void move(String dishId, String dishDegreeAndPosition) {
+		for(Dish dish: this.dishes) { 
+			if(dish.getDishId().equals(dishId)) { 
+				dc.move(dish, dishDegreeAndPosition); 
+			}
+		}
 	}
 
 	public List<Dish> getDishes() {
