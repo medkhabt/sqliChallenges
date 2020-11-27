@@ -1,1 +1,1 @@
-train challenge has two branches, as here i'm suggesting two solutions, one with the decorator design Pattern, and the other one still on progress,\n personnaly i found the decorator solution harder, and i don't think it is the most fit for this test.
+train challenge has two branches, as here i'm suggesting two solutions, one with the decorator design Pattern, and the other one whitout decorator,\n personnaly i found the decorator solution harder, and i don't think it is the most fit for this test.
